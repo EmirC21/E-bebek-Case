@@ -13,51 +13,59 @@ public class Employee {
 		this.hireYear=hireYear;
 	}
 	 
-	public void tax() 
+	public double tax() 
 	{
-		if(salary<1000) { System.out.println("vergi miktari : "+ 0+" TL");}
+		if(salary<1000) {return 0;}
 		else
 		{
 		double a;
 		a=(salary*0.03); 
-		System.out.println("vergi miktari : "+a+" TL");
+		return a;
 		}
 	}
-	public void bonus() 
+	public double bonus() 
 	{
 		if(workHours > 40) 
 		{
 		int a;
 		a=((workHours-40)*30) ;
-		System.out.println("bonus miktari: "+ a+" TL");
+		return a;
 		}
-		else {		System.out.println("bonus miktari: "+0+" TL");}
+		else {return 0;}
 	}
-	public void raiseSalary()
+	public double raiseSalary()
 	{
-		if(hireYear-2021<10) 
+		    double tot;
+			tot= bonus()+tax()+salary;
+		if(0<hireYear-2021&&hireYear-2021<10) 
 		{
+			
 			double a;
-			a=salary*0.05;
-			System.out.println("zam miktari: "+a+" TL");
+			a=tot*0.05;
+			return a;
 			
 		}
 		else if(9<hireYear-2021&&hireYear-2021<20) 
 		{
 			double a;
-			a=salary*0.1;
-			System.out.println("zam miktari: "+a+" TL");
+			a=tot*0.1;
+			return a;
 		}
 		else if(hireYear-2021>19) 
 		{
 			double a;
-			a=salary*0.15;
-			System.out.println("zam miktari: "+a+" TL");
+			a=tot*0.15;
+			return a;
 		}
+		else {return 0;}
 	}
-	public void toSalary() 
+	public String toString() 
 	{
-		System.out.println("isim: "+name+" maas: "+salary+" calisma saati: "+workHours+" ise baslangic tarihi: "+hireYear);
+		double x=tax()+bonus()+salary;
+		double y=x+raiseSalary();
+		return "isim: "+name+"\n"+"maas: "+salary+"\n"+"calisma saati: "+workHours+"\n"+"ise baslangic tarihi: "+hireYear+"\n"+
+		"Vergi: "+tax()+" TL"+"\n"+"bonus: "+bonus()+" TL"+"\n"+"Maas artisi: "+raiseSalary()+" TL"+"\n"+"Vergi ve bonusla birlikte maas: "
+		+x+" TL"+"\n"+"Toplam maas: "+y+" TL";
 	}
 	
 }
